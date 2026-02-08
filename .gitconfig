@@ -1,0 +1,169 @@
+# https://git-scm.com/docs/git-config
+# https://git-scm.com/docs/pretty-formats
+#
+# brew install git-delta
+#
+# NOTE: to apply changes to this configuration file execute:
+#       git init which will cause ~/.gitconfig to be reloaded
+#
+
+[alias]
+  # https://github.com/nedbat/watchgha
+  action = "!f() { \
+      watch_gha_runs \
+          \"$(git remote get-url origin)\" \
+          \"$(git rev-parse --abbrev-ref HEAD)\"; \
+  }; f"
+  ; branch-verbose = branch -vv
+  blame = blame -w -C -C -C
+  branch-verbose = "!git branch --format '%(HEAD) %(refname:short),%(color:green)%(objectname:short)%(color:reset),%(color:blue)[%(upstream)]%(color:reset),%(color:red)%(contents:subject)%(color:reset)' | column -t -s ','"
+  code-changes = "!git log --format=format: --name-only | egrep -v '^$' | sort | uniq -c | sort -rg | head -10"
+  cc = "!git code-changes"
+  clean-untracked = "clean -fd"
+  collaborators =! bash -c 'git shortlog -s -- $0 | sort -r'
+  conflicts = diff --name-only --diff-filter=U
+  diff = diff -w ; ignore whitespace
+  diff-unmerged =! bash -c 'git diff --name-only --diff-filter=U | uniq  | xargs "$EDITOR"'
+  diff-word = diff --word-diff=color
+  history = "!f() { git log -p --follow \"$1\"; }; f" # pass in a file path to see its complete history
+	log-graphstat = log --pretty=format:'%C(auto)%h%d%n%s%n%n%b%C(auto)%C(blue)%an <%ae>%C(reset), %C(auto)%C(dim)%ad%n%nNotes:%n%N' --graph --stat --notes=*
+  log-me = log-graphstat --author='BevTheDev'
+	log-short = log --pretty=format:'%s%n%C(green)%h %C(yellow)%D%n'
+  pr = "!f() { \
+    if [ $# -lt 2 ]; then \
+      echo \"Usage: git pr <pull_request_number> <branch_name>\"; \
+    else \
+      git pull --rebase origin main; \
+      git fetch origin pull/$1/head:$2; \
+      git checkout $2; \
+    fi \
+  }; f"
+  pushit = push --force-with-lease origin head
+  recent = branch --sort=-committerdate
+  search =! bash -c 'git rev-list --all | xargs git grep "$1"'
+  set-upstream = "!f() { git branch --set-upstream-to=origin/\"$1\" \"$1\"; }; f"
+  show = show -w
+  st = status
+  stm = "!git status --porcelain | grep '^ M' | cut -c 4-" # display only modified files (exclude untracked)
+  unstage = reset HEAD --
+  untracked = ls-files --others --exclude-standard
+  wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+
+[apply]
+  whitespace = nowarn
+
+[branch "main"]
+  rebase = true
+
+[branch "master"]
+  rebase = true
+
+[color]
+  branch = always
+  commit = red
+  diff = always
+  interactive = always
+  status = always
+  ui = true
+
+[color "decorate"]
+  branch = yellow
+  head = white
+  remoteBranch = red
+  tag = green
+
+[color "diff"]
+  frag = magenta
+  meta = yellow
+  new = green
+  old = red
+
+[color "diff-highlight"]
+  # for some reason my terminal theme needs pink to be set for the
+  # actual colors (red/green) to standout more clearly??
+  newhighlight = pink bold 22
+  newnormal = pink bold
+  oldhighlight = pink bold 52
+  oldnormal = pink bold
+
+[color "status"]
+  added = red
+  changed = yellow
+  untracked = white
+
+[commit]
+  template = ~/.gitcommit
+
+[core]
+  editor = nvim
+  excludesfile = ~/.gitignore
+  ignorecase = false
+  pager = delta --color-only --dark --line-numbers
+
+[delta]
+  keep-plus-minus-markers = true
+  minus-style = 'syntax darkred'
+  plus-style = 'syntax darkgreen'
+
+[diff]
+  algorithm = histogram
+  indentHeuristic = true
+  compactionHeuristic = true
+
+[diff "exif"]
+  textconv = exiftool
+
+[fetch]
+  recurseSubmodules = true # still requires: git clone --recursive ...
+	notes = true
+
+[interactive]
+  diffFilter = delta --color-only --dark --line-numbers
+
+[merge]
+	conflictStyle = zdiff3
+  tool = vimdiff # git mergetool --tool=vimdiff
+
+[mergetool]
+  prompt = true
+
+[push]
+  default = current # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault
+
+[user]
+  name = BevTheDev
+  email = iambevthedev@gmail.com
+  signingkey = 56408DFE
+
+# https://blog.github.com/changelog/2018-11-08-git-protocol-v2-support/
+[protocol]
+  version = 2
+
+[gpg]
+  program = /opt/homebrew/bin/gpg
+
+[init]
+	defaultBranch = main
+
+# force authentication to use SSH rather than HTTPS.
+# be aware this affects everything that tries to use git.
+# for example, vim (and other tools) will try to clone plugins using SSH.
+#
+# git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
+# avoid issues where the cargo-edit tool tries to clone from a repo you do not have WRITE access to.
+# we already use SSH for every github repo, and so this puts the clone back to using HTTPS.
+[url "https://github.com/rust-lang/crates.io-index"]
+  insteadOf = https://github.com/rust-lang/crates.io-index
+
+# avoid issues where the `cargo audit` command tries to clone from a repo you do not have WRITE access to.
+# we already use SSH for every github repo, and so this puts the clone back to using HTTPS.
+[url "https://github.com/RustSec/advisory-db"]
+  insteadOf = https://github.com/RustSec/advisory-db
+
+[credential]
+  helper = osxkeychain
+[log]
+	showNotes = true

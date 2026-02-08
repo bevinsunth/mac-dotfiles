@@ -1,0 +1,35 @@
+# ghostty +show-config --default --docs | nvim
+# ghostty +list-keybinds
+#
+# NOTE: useful tips...
+# cmd+<triple-mouse-click> == copy command output
+# cmd+shift+c == copy selected text inside of neovim
+# cmd+shift+v == paste whatever was selected using the mouse (vs cmd+v which pastes anything selected with the keyboard selection)
+
+adjust-cell-height = +20%
+auto-update = check
+clipboard-paste-protection=true
+clipboard-trim-trailing-spaces = true
+copy-on-select = clipboard
+font-family = Menlo
+font-feature = -liga
+font-thicken = true
+keybind = global:cmd+shift+w=toggle_quick_terminal
+keybind = super+page_down=scroll_page_fractional:0.5
+keybind = super+page_up=scroll_page_fractional:-0.5
+keybind = super+shift+page_down=scroll_page_lines:1
+keybind = super+shift+page_up=scroll_page_lines:-1
+keybind = super+shift+s=write_screen_file:paste
+keybind = super+shift+alt+s=write_screen_file:open
+macos-option-as-alt = right
+quick-terminal-autohide = false
+quick-terminal-position = center
+quick-terminal-size = 75%,50%
+scrollback-limit = 100000000
+split-divider-color = #666666
+theme = nightfox
+unfocused-split-opacity = 0.40
+window-new-tab-position = end
+window-padding-x = 20
+window-padding-y = 15
+window-save-state = always

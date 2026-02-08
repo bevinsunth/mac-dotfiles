@@ -1,0 +1,19 @@
+#!/usr/bin/zsh
+
+if [[ -z "$path" ]]; then
+	# IMPORTANT: chpwd sources ~/.zshrc but then this script loses its PATH.
+	# So in chpwd ~/.config/zsh/tools.zsh we assign PATH to MODIFIED_PATH.
+	# If we don't then this script will fail to lookup certain binaries.
+	export PATH="$MODIFIED_PATH"
+fi
+
+# environment
+#
+# export EXAMPLE_API_KEY={{ op://VaultName/SecretName/SectionName/TokenName }}
+export GOPRIVATE=github.com/fastly
+
+# ensure there are no duplicates in the $PATH
+#
+typeset -U path
+
+echo .localrc loaded
