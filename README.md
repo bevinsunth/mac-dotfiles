@@ -52,3 +52,9 @@ brew bundle install
 - [makemkv](https://makemkv.com/): rip DVDs and Blu-ray discs.
 - [flameshot](https://flameshot.org/): annotate images.
 - [owly](https://apps.apple.com/us/app/owly-display-sleep-prevention/id882812218): prevent screen going to sleep.
+
+
+## Acknowledgments
+
+This project is a fork of [Integralist/dotfiles](https://github.com/Integralist/dotfiles). 
+Special thanks to [Integralist](https://github.com/Integralist) for the original configuration and inspiration.
