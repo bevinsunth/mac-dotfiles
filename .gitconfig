@@ -92,7 +92,7 @@
   untracked = white
 
 [commit]
-  template = ~/.gitcommit
+  # template = ~/.gitcommit
 
 [core]
   editor = nvim
