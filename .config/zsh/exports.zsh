@@ -111,6 +111,9 @@ man() {
 #
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export NVM_DIR=”$HOME/.nvm”
+[ -s “$HOMEBREW_PREFIX/opt/nvm/nvm.sh” ] && . “$HOMEBREW_PREFIX/opt/nvm/nvm.sh”  # This loads nvm
+[ -s “$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm” ] && . “$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm”  # This loads nvm bash_completion
 #export PATH="$HOME/.cargo/bin:$PATH"                                            # rust executables
 #export PATH="/opt/homebrew/opt/ruby/bin:$PATH"                                  # ruby executables
 #export PATH="$HOME/bin:$PATH"                                                   # terraform executables (via tfswitch)
