@@ -107,17 +107,20 @@ man() {
   command man "$@"
 }
 
+
 # PATH Modifications
 #
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export NVM_DIR=”$HOME/.nvm”
-[ -s “$HOMEBREW_PREFIX/opt/nvm/nvm.sh” ] && . “$HOMEBREW_PREFIX/opt/nvm/nvm.sh”  # This loads nvm
-[ -s “$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm” ] && . “$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm”  # This loads nvm bash_completion
-#export PATH="$HOME/.cargo/bin:$PATH"                                            # rust executables
-#export PATH="/opt/homebrew/opt/ruby/bin:$PATH"                                  # ruby executables
-#export PATH="$HOME/bin:$PATH"                                                   # terraform executables (via tfswitch)
-#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" # yarn executables
+export PATH=”/usr/local/sbin:/usr/local/bin:$PATH”
+#export PATH=”$HOME/.cargo/bin:$PATH”                                            # rust executables
+#export PATH=”/opt/homebrew/opt/ruby/bin:$PATH”                                  # ruby executables
+#export PATH=”$HOME/bin:$PATH”                                                   # terraform executables (via tfswitch)
+#export PATH=”$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH” # yarn executables
+
+# NVM
+#
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # IMPORTANT: We MUST assign the modified path to a new environment variable.
 # The parent scope (~/.zshrc) will then prefix it to its current path value.
