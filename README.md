@@ -1,8 +1,8 @@
 # dotfiles
 
 > \[!TIP\]
-> Clone this repo to `~/code/dotfiles` then symlink files.\
-> e.g. `ln -s ~/code/dotfiles/.config ~/.config`
+> Clone this repo to `~/Documents/Projects/mac-dotfiles` then symlink files.\
+> e.g. `ln -s ~/Documents/Projects/mac-dotfiles/.config ~/.config`
 
 The ultimate source of truth is this dotfile repo, all other published content is likely stale. This includes...
 
@@ -15,7 +15,16 @@ The ultimate source of truth is this dotfile repo, all other published content i
 
 ### Copy Files
 
-`cp -R .zshrc .config .gitconfig .gitignore .ignore ~/`
+`cp -R .zshrc .config .gitconfig .gitignore .git-hooks .ignore ~/`
+
+### Git Hooks
+
+Global git hooks live in `.git-hooks/`. Symlink each hook into `~/.git-hooks/` - `hooksPath` is already set in `.gitconfig`.
+
+```shell
+mkdir -p ~/.git-hooks
+ln -sf ~/Documents/Projects/mac-dotfiles/.git-hooks/prepare-commit-msg ~/.git-hooks/prepare-commit-msg
+```
 
 ### Prompt
 

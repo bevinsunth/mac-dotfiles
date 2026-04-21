@@ -1,0 +1,33 @@
+#!/bin/sh
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Skip for merges, squash, fixup, or amends
+if [ "$COMMIT_SOURCE" = "merge" ] || [ "$COMMIT_SOURCE" = "squash" ]; then
+    exit 0
+fi
+
+if grep -qE "^(fixup|squash)!" "$COMMIT_MSG_FILE"; then
+    exit 0
+fi
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# No-ticket branch (e.g. noticket-something)
+if echo "$BRANCH" | grep -qiE '^noticket'; then
+    PREFIX="NOTICKET"
+# Branch contains ticket (e.g. ABC-384-description or feature/ABC-384-description)
+elif TICKET=$(echo "$BRANCH" | grep -oiE '[A-Za-z]+-[0-9]+' | head -1 | tr '[:lower:]' '[:upper:]'); [ -n "$TICKET" ]; then
+    PREFIX="$TICKET"
+else
+    exit 0
+fi
+
+# Don't double-prefix
+if grep -qE "^$PREFIX" "$COMMIT_MSG_FILE"; then
+    exit 0
+fi
+
+ORIGINAL=$(cat "$COMMIT_MSG_FILE")
+echo "$PREFIX $ORIGINAL" > "$COMMIT_MSG_FILE"

@@ -309,6 +309,10 @@ eval "$(starship init zsh)"
 #
 #eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
-# IMPORTANT: We MUST assign the modified path to a new environment variable.
+# Git hooks - ensure hooks are executable
+#
+chmod +x ~/.git-hooks/prepare-commit-msg
+
+#IMPORTANT: We MUST assign the modified path to a new environment variable.
 # The parent scope (~/.zshrc) will then prefix it to its current path value.
 export MODIFIED_PATH="$PATH"
