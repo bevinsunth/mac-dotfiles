@@ -6,14 +6,21 @@ DOTFILES := $(shell pwd)
 
 .PHONY: link
 link:  ## Symlink dotfiles into $HOME (run once on new machine)
-	ln -sf $(DOTFILES)/.zshrc $$HOME/.zshrc
-	ln -sf $(DOTFILES)/.config/zsh $$HOME/.config/zsh
-	ln -sf $(DOTFILES)/.config/ghostty $$HOME/.config/ghostty
-	ln -sf $(DOTFILES)/.config/starship.toml $$HOME/.config/starship.toml
-	ln -sf $(DOTFILES)/.config/humanlog $$HOME/.config/humanlog
-	mkdir -p $$HOME/.git-hooks
-	ln -sf $(DOTFILES)/.git-hooks/prepare-commit-msg $$HOME/.git-hooks/prepare-commit-msg
-	@echo "Symlinks created."
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.zshrc DST=$$HOME/.zshrc
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/starship.toml DST=$$HOME/.config/starship.toml
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/zsh DST=$$HOME/.config/zsh
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/ghostty DST=$$HOME/.config/ghostty
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/humanlog DST=$$HOME/.config/humanlog
+	@mkdir -p $$HOME/.git-hooks
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.git-hooks/prepare-commit-msg DST=$$HOME/.git-hooks/prepare-commit-msg
+	@echo "Done."
+
+_link_file:
+	@if [ -e "$(DST)" ] && [ ! -L "$(DST)" ]; then \
+		echo "WARNING: $(DST) already exists — remove it manually before symlinking"; \
+	else \
+		ln -sf $(SRC) $(DST); \
+	fi
 
 .PHONY: check
 check:  ## Check all Brewfile packages are installed
