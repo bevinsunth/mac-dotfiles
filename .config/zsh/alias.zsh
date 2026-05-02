@@ -76,7 +76,6 @@ alias gan='git add $(git ls-files -o --exclude-standard)' # stage only new files
 alias gap="git add --patch"
 alias gb="git branch-verbose" # defined in ~/.gitconfig
 alias gbd="git branch -D" # pass branch name to delete
-alias gbi="git branch --list 'integralist*'"
 alias gc="git checkout"
 alias gca="git commit --amend"
 alias gcm="git commit"
@@ -91,11 +90,6 @@ alias gl="git log-graphstat" # defined in ~/.gitconfig
 alias glm="git log-me" # defined in ~/.gitconfig
 alias gls="git log-short" # defined in ~/.gitconfig
 alias gn="git config --add remote.origin.fetch '+refs/notes/*:refs/notes/*'" # track notes from the remote
-alias godoc="stdsym | fzf | xargs go doc " -- https://github.com/lotusirous/gostdsym
-alias golatest="curl -L https://github.com/golang/go/tags 2>&1 | rg '/golang/go/releases/tag/go[\w.]+' -o | cut -d '/' -f 6 | grep -v 'rc' | awk NR==1 | rg '\d.+' -o"
-alias golatestall="curl -s 'https://go.dev/dl/?mode=json' | jq -c '.[]' | jq -c '.files[] | select(.os == \"darwin\" or .os == \"linux\" or .os == \"freebsd\") | select(.arch == \"386\" or .arch == \"amd64\" or .arch == \"armv6l\" or .arch == \"arm64\") | select(.kind == \"archive\")'"
-alias gom="go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -test -fix -diff ./... | delta"
-alias goma="go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -test -fix ./..."
 alias gpr="git pull --rebase origin" # pass branch name
 alias gr="git rebase"
 alias grm="git remote prune origin"
@@ -124,7 +118,6 @@ normal=$(tput sgr0)
 alias list='cat ~/.config/zsh/alias.zsh | grep "^alias" | gsed -En "s/alias (\w+)=(.+)/${bold}\1\n  ${normal}\2\n/p"'
 
 alias ldd="otool -L" # display shared object files a binary is linked to
-#alias ls="eza -lh --icons --octal-permissions --no-user --git --group-directories-first --all" # REMOVED: `--ignore-glob '.git|node_modules'`
 alias lsd="ls -s 'modified'"
 alias mtr="sudo mtr --report-wide --show-ips --aslookup"
 alias nv="novowels"
@@ -137,7 +130,6 @@ alias rg="rg --glob '!node_modules/' --glob '!.git/' --glob '!aider*' --glob '!.
 alias ripall='rip * &> /dev/null ; rip .* &> /dev/null' # for redirection to work in Zsh we need to set `setopt +o nomatch`
 alias sizeit="du -ahc" # can also add on a path at the end `sizeit ~/some/path`
 alias sys='sw_vers && echo && system_profiler SPSoftwareDataType && curl -s https://en.wikipedia.org/wiki/MacOS_version_history | grep -Eo "Version $(version=$(sw_vers -productVersion) && echo ${version%.*}): \"[^\"]+\"" | uniq'
-alias tf="TF_LOG=DEBUG FASTLY_DEBUG_MODE=true FASTLY_TF_DISPLAY_SENSITIVE_FIELDS=true terraform"
 alias top='htop'
 alias tree='tree -I node_modules'
 alias uid="uuidgen" # this is a macOS binary (man uuidgen)

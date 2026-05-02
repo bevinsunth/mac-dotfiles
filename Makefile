@@ -1,19 +1,25 @@
-.PHONY: all clean test
+.PHONY: all clean test check install link
 
 .DEFAULT_GOAL := help
 
-.PHONY: sync_ghostty
-sync_ghostty:  ## Sync the ghostty terminal configuration
-	cp -r $$HOME/.config/ghostty/ .config/ghostty/
+DOTFILES := $(shell pwd)
 
-.PHONY: sync_starship
-sync_starship:  ## Sync the Starship prompt configuration
-	cp -r $$HOME/.config/starship.toml .config/starship.toml
+.PHONY: link
+link:  ## Symlink dotfiles into $HOME (run once on new machine)
+	ln -sf $(DOTFILES)/.zshrc $$HOME/.zshrc
+	ln -sf $(DOTFILES)/.config/zsh $$HOME/.config/zsh
+	ln -sf $(DOTFILES)/.config/ghostty $$HOME/.config/ghostty
+	ln -sf $(DOTFILES)/.config/starship.toml $$HOME/.config/starship.toml
+	ln -sf $(DOTFILES)/.config/humanlog $$HOME/.config/humanlog
+	@echo "Symlinks created."
 
-.PHONY: sync_zsh
-sync_zsh:  ## Sync the ZSH shell configuration
-	cp $$HOME/.zshrc .zshrc
-	cp -r $$HOME/.config/zsh/ .config/zsh/
+.PHONY: check
+check:  ## Check all Brewfile packages are installed
+	brew bundle check --verbose
+
+.PHONY: install
+install:  ## Install missing Brewfile packages
+	brew bundle install
 
 help:
 	@printf "Targets\n"

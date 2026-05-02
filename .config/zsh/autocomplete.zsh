@@ -49,18 +49,6 @@ if ! test -f $path_bash_git_completion; then
 	chmod +x $path_bash_git_completion
 fi
 
-# Rust Autocomplete
-#
-path_rustup_completion="$dir_zsh/_rustup"
-if ! test -f $path_rustup_completion; then
-	rustup completions zsh > $path_rustup_completion
-fi
-source "$path_rustup_completion"
-path_cargo_completion="$dir_zsh/_cargo"
-if ! test -f $path_cargo_completion; then
-	rustup completions zsh cargo > $path_cargo_completion
-fi
-
 fpath=($dir_zsh $fpath)
 zstyle ':completion:*:*:git:*' script $path_bash_git_completion
 zstyle ':completion:*:default' menu select=2 # Highlight the selected option when using auto-complete.
@@ -72,48 +60,6 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh-users/zsh-syntax-highlighting
 #
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Terraform Autocomplete
-#
-complete -o nospace -C $(brew --prefix)/bin/terraform terraform
-
-## Doggo Autocomplete
-##
-#if ! command -v doggo &> /dev/null
-#then
-#  brew install doggo
-#fi
-#doggo completions zsh > "${fpath[1]}/_doggo"
-
-# 1Password Autocomplete
-#
-#if command -v op &> /dev/null
-#then
-#	eval "$(op completion zsh)"; compdef _op op
-#fi
-
-## Golangci-lint Autocomplete
-##
-#if command -v golangci-lint &> /dev/null
-#then
-#	eval "$(golangci-lint completion zsh)"
-#fi
-#
-## Dagger Autocomplete
-##
-#if command -v dagger &> /dev/null
-#then
-#	eval "$(dagger completion zsh)"
-#fi
-
-# DISABLED:
-#
-# Example Autocomplete
-# Uses https://github.com/integralist/zsh-cli-json-parser (installed earlier)
-#
-# path_example_completion="$dir_zsh/_example"
-# chmod +x $path_example_completion
-# source "$path_example_completion"
 
 # install fzf
 #

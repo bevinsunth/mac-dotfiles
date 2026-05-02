@@ -51,7 +51,6 @@ export LS_COLORS="rs=0:di=36:ln=32:mh=00:pi=33:so=33:do=33:bd=00:cd=00:or=05;36:
 
 # Application Configuration
 #
-#export DOCKER_HOST="unix://$HOME/.colima/docker.sock" # Fixes `docker` commands so they can find where Colima runtime is
 export EDITOR="nvim"
 export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_DEFAULT_COMMAND="rg --hidden --no-ignore --files"
@@ -61,18 +60,7 @@ export GREP_COLOR="1;32"
 export GREP_OPTIONS="--color=auto"
 export MANPAGER="less -X" # Don't clear the screen after quitting a manual page
 
-# DISABLED: I'm using ghostty now with neovim and not vim or tmux anymore.
-# export TERM="xterm-256color" # avoid "terminals database is inaccessible" and not being able to run `clear` command (also fixes tmux/vim colour issues).
-# export TERMINFO=/usr/share/terminfo
-
 export TIMEFORMAT="$(printf '\n\e[01;31m')elapsed:$(printf '\e[00m') %Rs, $(printf '\e[01;33m')user mode (cpu time):$(printf '\e[00m') %U, $(printf '\e[01;32m')system mode (cpu time):$(printf '\e[00m') %S $(printf '\e[0m')"
-
-# DISABLED:
-# This tells pinentry to use a terminal-based interface (not the OS UI prompt).
-# I disabled as I prefer the OS prompt, as it doesn't block my terminal.
-# The OS prompt typically hovers above the terminal.
-#
-# export PINENTRY_USER_DATA="USE_CURSES=1"
 
 # Git Specific Configurations
 #
@@ -111,10 +99,6 @@ man() {
 # PATH Modifications
 #
 export PATH=”/usr/local/sbin:/usr/local/bin:$PATH”
-#export PATH=”$HOME/.cargo/bin:$PATH”                                            # rust executables
-#export PATH=”/opt/homebrew/opt/ruby/bin:$PATH”                                  # ruby executables
-#export PATH=”$HOME/bin:$PATH”                                                   # terraform executables (via tfswitch)
-#export PATH=”$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH” # yarn executables
 
 # NVM
 #

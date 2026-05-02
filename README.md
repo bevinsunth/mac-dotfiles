@@ -4,18 +4,14 @@
 > Clone this repo to `~/Documents/Projects/mac-dotfiles` then symlink files.\
 > e.g. `ln -s ~/Documents/Projects/mac-dotfiles/.config ~/.config`
 
-The ultimate source of truth is this dotfile repo, all other published content is likely stale. This includes...
 
-[This blog post](https://www.integralist.co.uk/posts/dev-tools/) which gives a summary of all my favourite developer tools.
+### Link Files
 
-[This blog post](https://www.integralist.co.uk/posts/laptop-setup-v2) which gives a detailed break down of how to set up a new macOS laptop.
+Run once after cloning to symlink dotfiles into `$HOME`:
 
-[This gist](https://gist.github.com/Integralist/05e5415de6743e66b112574a1a5c1970) which gives a concise summary of the steps from the blog post.
-
-
-### Copy Files
-
-`cp -R .zshrc .config .gitconfig .gitignore .git-hooks .ignore ~/`
+```shell
+make link
+```
 
 ### Git Hooks
 
@@ -38,17 +34,17 @@ ln -sf ~/Documents/Projects/mac-dotfiles/.git-hooks/prepare-commit-msg ~/.git-ho
 
 ## Tools
 
-There is a [`Brewfile`](./Brewfile) which can help you install any programs that were installed via Homebrew:
+There is a [`Brewfile`](./Brewfile) which lists all Homebrew packages. Use the Makefile targets to manage them:
 
 ```shell
-brew bundle install --file=Brewfile
+make check    # check what's installed vs missing
+make install  # install any missing packages
 ```
 
-You can also regenerate it using:
+You can also regenerate the Brewfile from your current installed packages:
 
 ```shell
 brew bundle dump --force
-brew bundle install
 ```
 
 ## GUIs
