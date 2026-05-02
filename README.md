@@ -1,25 +1,13 @@
 # dotfiles
 
-> \[!TIP\]
-> Clone this repo to `~/Documents/Projects/mac-dotfiles` then symlink files.\
-> e.g. `ln -s ~/Documents/Projects/mac-dotfiles/.config ~/.config`
+### Setup
 
-
-### Link Files
-
-Run once after cloning to symlink dotfiles into `$HOME`:
+Clone then run once to symlink all dotfiles and git hooks into `$HOME`:
 
 ```shell
+git clone <repo> ~/Documents/projects/mac-dotfiles
+cd ~/Documents/projects/mac-dotfiles
 make link
-```
-
-### Git Hooks
-
-Global git hooks live in `.git-hooks/`. Symlink each hook into `~/.git-hooks/` - `hooksPath` is already set in `.gitconfig`.
-
-```shell
-mkdir -p ~/.git-hooks
-ln -sf ~/Documents/Projects/mac-dotfiles/.git-hooks/prepare-commit-msg ~/.git-hooks/prepare-commit-msg
 ```
 
 ### Prompt
@@ -46,18 +34,6 @@ You can also regenerate the Brewfile from your current installed packages:
 ```shell
 brew bundle dump --force
 ```
-
-## GUIs
-
-- [Android File Transfer](https://www.android.com/filetransfer/): `brew install --cask android-file-transfer`
-- [Rio Terminal](https://raphamorim.io/rio/): `brew install --cask rio`
-- [Warp Terminal](https://www.warp.dev/): `brew install --cask warp`.
-- [goread](https://github.com/TypicalAM/goread): `brew install goread`.
-- [alltomp3](https://alltomp3.org/): for backing up Spotify music.
-- [makemkv](https://makemkv.com/): rip DVDs and Blu-ray discs.
-- [flameshot](https://flameshot.org/): annotate images.
-- [owly](https://apps.apple.com/us/app/owly-display-sleep-prevention/id882812218): prevent screen going to sleep.
-
 
 ## Acknowledgments
 

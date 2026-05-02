@@ -11,6 +11,8 @@ link:  ## Symlink dotfiles into $HOME (run once on new machine)
 	ln -sf $(DOTFILES)/.config/ghostty $$HOME/.config/ghostty
 	ln -sf $(DOTFILES)/.config/starship.toml $$HOME/.config/starship.toml
 	ln -sf $(DOTFILES)/.config/humanlog $$HOME/.config/humanlog
+	mkdir -p $$HOME/.git-hooks
+	ln -sf $(DOTFILES)/.git-hooks/prepare-commit-msg $$HOME/.git-hooks/prepare-commit-msg
 	@echo "Symlinks created."
 
 .PHONY: check
