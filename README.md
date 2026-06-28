@@ -20,6 +20,15 @@ make link
 > e.g. `brew install font-hack-nerd-font`\
 > Will install "Hack Nerd Font Mono".
 
+## Git Hooks
+
+The `commit-msg` hook auto-prefixes commit messages with the ticket number from the branch name (e.g. `ABC-123 my message`).
+
+`make link` sets the hook up and marks it executable. The `commit-msg` hook is used instead of `prepare-commit-msg` because JetBrains IDEs (Rider, etc.) only run `commit-msg` - using `prepare-commit-msg` would silently skip in those IDEs.
+
+> \[!NOTE\]
+> If you add new hooks, ensure they are also marked executable in the `link` Makefile target.
+
 ## Tools
 
 There is a [`Brewfile`](./Brewfile) which lists all Homebrew packages. Use the Makefile targets to manage them:

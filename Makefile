@@ -12,7 +12,8 @@ link:  ## Symlink dotfiles into $HOME (run once on new machine)
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/ghostty DST=$$HOME/.config/ghostty
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/humanlog DST=$$HOME/.config/humanlog
 	@mkdir -p $$HOME/.git-hooks
-	@$(MAKE) _link_file SRC=$(DOTFILES)/.git-hooks/prepare-commit-msg DST=$$HOME/.git-hooks/prepare-commit-msg
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.git-hooks/commit-msg DST=$$HOME/.git-hooks/commit-msg
+	@chmod +x $(DOTFILES)/.git-hooks/commit-msg
 	@echo "Done."
 
 _link_file:

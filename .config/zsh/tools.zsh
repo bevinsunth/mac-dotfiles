@@ -18,7 +18,7 @@ eval "$(starship init zsh)"
 
 # Git hooks - ensure hooks are executable
 #
-chmod +x ~/.git-hooks/prepare-commit-msg
+chmod +x ~/.git-hooks/commit-msg
 
 #IMPORTANT: We MUST assign the modified path to a new environment variable.
 # The parent scope (~/.zshrc) will then prefix it to its current path value.
