@@ -116,9 +116,11 @@ alias json="python -m json.tool"
 bold=$(tput bold)
 normal=$(tput sgr0)
 alias list='cat ~/.config/zsh/alias.zsh | grep "^alias" | gsed -En "s/alias (\w+)=(.+)/${bold}\1\n  ${normal}\2\n/p"'
-
 alias ldd="otool -L" # display shared object files a binary is linked to
-alias lsd="ls -s 'modified'"
+alias ls="eza"
+alias la="eza -la --git --icons"
+alias ll="eza -l --git --icons"
+alias lt="eza -T --git-ignore --icons"
 alias mtr="sudo mtr --report-wide --show-ips --aslookup"
 alias nv="novowels"
 alias ping="gping"
