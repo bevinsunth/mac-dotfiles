@@ -20,7 +20,7 @@ _link_file:
 	@if [ -e "$(DST)" ] && [ ! -L "$(DST)" ]; then \
 		echo "WARNING: $(DST) already exists — remove it manually before symlinking"; \
 	else \
-		ln -sf $(SRC) $(DST); \
+		ln -sfn $(SRC) $(DST); \
 	fi
 
 .PHONY: check
