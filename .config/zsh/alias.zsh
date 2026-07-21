@@ -133,12 +133,13 @@ alias ripall='rip * &> /dev/null ; rip .* &> /dev/null' # for redirection to wor
 alias sizeit="du -ahc" # can also add on a path at the end `sizeit ~/some/path`
 alias sys='sw_vers && echo && system_profiler SPSoftwareDataType && curl -s https://en.wikipedia.org/wiki/MacOS_version_history | grep -Eo "Version $(version=$(sw_vers -productVersion) && echo ${version%.*}): \"[^\"]+\"" | uniq'
 alias tf="tofu"
-alias ta='tmux attach -t main 2>/dev/null || tmux new -s main'
-unalias tn 2>/dev/null
-tn() { tmux new -s "${1:-main}" }
-alias tl='tmux ls'
-unalias tk 2>/dev/null
-tk() { tmux kill-session -t "${1:-main}" }
+unalias tma 2>/dev/null
+tma() { tmux attach -t "${1:-main}" 2>/dev/null || tmux new -s "${1:-main}" } # attach existing session (or create)
+unalias tmn 2>/dev/null
+tmn() { tmux new -s "${1:-main}" }
+alias tml='tmux ls'
+unalias tmk 2>/dev/null
+tmk() { tmux kill-session -t "${1:-main}" }
 alias top='htop'
 alias tree='tree -I node_modules'
 alias uid="uuidgen" # this is a macOS binary (man uuidgen)
