@@ -16,6 +16,10 @@ Configuration for [Flameshot](https://flameshot.org/), a powerful and easy-to-us
 
 Configuration for [Ghostty](https://github.com/ghostty-org/ghostty), a GPU-accelerated terminal emulator. The `config` file defines settings like font, keybindings, and theme.
 
+### `herdr`
+
+Configuration for [Herdr](https://herdr.dev/), a terminal multiplexer for AI coding agents. Only `config.toml` is tracked; the runtime state (logs, sockets, plugins cache, session) lives in `~/.config/herdr/` and is not version-controlled.
+
 ### `htop`
 
 Configuration for [htop](https://htop.dev/), an interactive process viewer. The `htoprc` file saves the setup and display options.
@@ -26,7 +30,7 @@ Configuration for [humanlog](https://github.com/humanlogio/humanlog), a tool for
 
 ### `nvim`
 
-Configuration for [Neovim](https://neovim.io/), a highly extensible, Vim-based text editor. This is the main editor configuration, managed with Lua and the `lazy.nvim` plugin manager.
+Configuration for [Neovim](https://neovim.io/), a highly extensible, Vim-based text editor. This is a [LazyVim](https://lazyvim.org/) starter: `init.lua` bootstraps `lazy.nvim`, with custom keys/options/autocmds in `lua/config/` and any extra plugins in `lua/plugins/`. `lazy-lock.json` pins plugin versions. The lazy-managed `lua/plugin/` shim directory is gitignored.
 
 ### `procs`
 

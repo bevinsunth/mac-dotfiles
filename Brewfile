@@ -27,6 +27,8 @@ brew "node"
 brew "nvm"
 # AI coding agent, built for the terminal
 brew "opencode"
+# Drop-in replacement for Terraform. Infrastructure as Code Tool
+brew "opentofu"
 # Fast, disk space efficient package manager
 brew "pnpm"
 # Interpreted, interactive, object-oriented programming language
@@ -35,8 +37,6 @@ brew "python@3.10"
 brew "rustup"
 # Cross-shell prompt for astronauts
 brew "starship"
-# Free Terraform
-brew "opentofu"
 # Terminal multiplexer
 brew "tmux"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -61,6 +61,8 @@ cask "betterdisplay"
 cask "bitwarden"
 # 3D creation suite
 cask "blender"
+# E-books management software
+cask "calibre"
 # Two-panel file manager
 cask "commander-one"
 # Voice and text chat software
@@ -98,3 +100,5 @@ cask "whatsapp"
 # Gecko based web browser
 cask "zen"
 vscode "ms-ossdata.vscode-pgsql"
+vscode "ms-vscode.cpptools"
+vscode "platformio.platformio-ide"

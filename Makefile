@@ -10,7 +10,9 @@ link:  ## Symlink dotfiles into $HOME (run once on new machine)
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/starship.toml DST=$$HOME/.config/starship.toml
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/zsh DST=$$HOME/.config/zsh
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/ghostty DST=$$HOME/.config/ghostty
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/herdr/config.toml DST=$$HOME/.config/herdr/config.toml
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/humanlog DST=$$HOME/.config/humanlog
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/nvim DST=$$HOME/.config/nvim
 	@mkdir -p $$HOME/.git-hooks
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.git-hooks/commit-msg DST=$$HOME/.git-hooks/commit-msg
 	@chmod +x $(DOTFILES)/.git-hooks/commit-msg
