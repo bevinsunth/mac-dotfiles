@@ -21,7 +21,7 @@ require("lazy").setup({
     -- import/override with your plugins
     { import = "plugins" },
   },
-concurrency = 1, 
+  concurrency = 1,
   defaults = {
     lazy = false,
   },
@@ -36,7 +36,7 @@ concurrency = 1,
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
-    enabled = true, -- check for plugin updates periodically
+    enabled = false, -- check for plugin updates periodically
     notify = false, -- notify on update
   }, -- automatically check for plugin updates
   performance = {
