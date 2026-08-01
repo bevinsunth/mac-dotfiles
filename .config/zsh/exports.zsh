@@ -101,6 +101,13 @@ man() {
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
+# .NET
+#
+# DOTNET_ROOT is required by Roslyn's apphost to locate the runtime.
+# Use the version-independent Homebrew path so it survives `brew upgrade dotnet`.
+export PATH="/opt/homebrew/opt/dotnet/bin:$PATH"
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+
 # NVM
 #
 export NVM_DIR="$HOME/.nvm"
