@@ -50,4 +50,40 @@ return {
     ft = { "cs", "razor" },
     opts = {},
   },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = { "seblyng/roslyn.nvim" },
+    config = function()
+      local dap = require("dap")
+
+      local exe = vim.fn.exepath("netcoredbg")
+      if exe == "" then
+        exe = vim.fn.stdpath("data") .. "/mason/bin/netcoredbg"
+      end
+
+      dap.adapters.netcoredbg = {
+        type = "executable",
+        command = exe,
+        args = { "--interpreter=vscode" },
+      }
+
+      dap.configurations.cs = {
+        {
+          type = "netcoredbg",
+          request = "launch",
+          name = "Launch .NET project",
+          program = function()
+            return vim.fn.input(
+              "Path to dll: ",
+              vim.fn.getcwd() .. "/bin/Debug/",
+              "file"
+            )
+          end,
+          cwd = "${workspaceFolder}",
+          justMyCode = true,
+          stopAtEntry = false,
+        },
+      }
+    end,
+  },
 }
