@@ -102,6 +102,38 @@ alias gstm="git stm" # display only modified files (exclude untracked) - defined
 alias gsw="git switch"
 alias gt="git tag --sort=-creatordate | tac" # brew install tac (cat backwards)
 alias gup="git push"
+
+# git worktrees (tab completion for gws/gwr/gwa is defined in ~/.config/zsh/autocomplete.zsh)
+alias gw="git worktree"
+alias gwl="git worktree list"
+__gw_paths() { git worktree list --porcelain 2>/dev/null | awk '/^worktree /{print substr($0, 10)}' } # porcelain output is space-safe
+unalias gws 2>/dev/null
+gws() { # switch worktree: arg = substring match, no arg = fzf picker
+  local dir
+  if [[ -n "$1" ]]; then
+    dir=$(__gw_paths | grep -m1 -- "$1")
+  else
+    dir=$(__gw_paths | fzf --height 40% --reverse)
+  fi
+  [[ -n "$dir" ]] && cd "$dir" || echo "no worktree match: $1"
+}
+unalias gwa 2>/dev/null
+gwa() { # add worktree (as a sibling dir) for branch $1, then cd into it
+  local repo=$(basename "$(git rev-parse --show-toplevel)")
+  local dir="../${repo}-$1"
+  if git show-ref --verify --quiet "refs/heads/$1"; then
+    git worktree add "$dir" "$1" # existing local branch
+  elif git show-ref --verify --quiet "refs/remotes/origin/$1"; then
+    git worktree add "$dir" -b "$1" --track "origin/$1" # existing remote branch
+  else
+    git worktree add "$dir" -b "$1" # brand new branch
+  fi && cd "$dir"
+}
+unalias gwr 2>/dev/null
+gwr() { git worktree remove "$1" && git worktree prune } # pass worktree path to remove
+unalias gwm 2>/dev/null
+gwm() { cd "$(__gw_paths | head -1)" } # back to the main worktree
+
 alias gwip="git wip" # defined in ~/.gitconfig
 
 # To view built-in command help documentation Zsh doesn't have a `help` command like Bash.

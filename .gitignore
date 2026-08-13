@@ -20,5 +20,12 @@ Session.vim
 .aider*
 CLAUDE.md
 
+# Herdr runtime state - only config.toml, plugins.json and plugins/config are tracked
+.config/herdr/*.log
+.config/herdr/*.sock
+.config/herdr/session.json
+.config/herdr/release-notes.json
+.config/herdr/plugins/github/
+
 # JetBrains / IntelliJ
 .idea/

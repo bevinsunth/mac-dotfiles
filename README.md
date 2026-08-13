@@ -44,6 +44,17 @@ You can also regenerate the Brewfile from your current installed packages:
 brew bundle dump --force
 ```
 
+## Herdr
+
+`make link` symlinks `config.toml`, `plugins.json` and `plugins/config/` into `~/.config/herdr`. Logs, sockets, `session.json` and the plugin source checkouts under `plugins/github/` are runtime state and stay untracked.
+
+`plugins.json` records which plugins are installed but not their source, so on a new machine reinstall them:
+
+```shell
+herdr plugin install persiyanov/herdr-reviewr
+herdr server reload-config
+```
+
 ## Acknowledgments
 
 This project is a fork of [Integralist/dotfiles](https://github.com/Integralist/dotfiles). 

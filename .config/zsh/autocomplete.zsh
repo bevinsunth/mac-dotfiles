@@ -107,3 +107,16 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
+
+# Git worktree helpers (gws/gwa/gwr/gwm are defined in ~/.config/zsh/alias.zsh).
+# These MUST live here rather than in alias.zsh, as `compdef` only exists after compinit has run.
+#
+_gw_worktree_paths() {
+  local -a wt
+  wt=(${(f)"$(__gw_paths)"})
+  _describe 'worktree' wt
+}
+compdef _gw_worktree_paths gws
+compdef _gw_worktree_paths gwr
+compdef _git_branch_names gwa 2>/dev/null # branch names when creating a new worktree
+zstyle ':fzf-tab:complete:gws:*' fzf-preview 'eza -1 --color=always $word'

@@ -1,4 +1,8 @@
 onboarding = false
+
+[keys]
+previous_workspace = "prefix+;"
+
 [[keys.command]]
 key = "cmd+r"
 type = "plugin_action"
