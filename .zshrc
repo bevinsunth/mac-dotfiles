@@ -33,3 +33,5 @@ export PATH="$MODIFIED_PATH:$PATH"
 typeset -U path
 
 echo .zshrc loaded
+
+. "$HOME/.local/bin/env"
