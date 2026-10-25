@@ -10,6 +10,7 @@ link:  ## Symlink dotfiles into $HOME (run once on new machine)
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/starship.toml DST=$$HOME/.config/starship.toml
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/zsh DST=$$HOME/.config/zsh
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/ghostty DST=$$HOME/.config/ghostty
+	@$(MAKE) _link_file SRC=$(DOTFILES)/.ideavimrc DST=$$HOME/.config/.ideavimrc
 	@mkdir -p $$HOME/.config/herdr/plugins
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/herdr/config.toml DST=$$HOME/.config/herdr/config.toml
 	@$(MAKE) _link_file SRC=$(DOTFILES)/.config/herdr/plugins.json DST=$$HOME/.config/herdr/plugins.json

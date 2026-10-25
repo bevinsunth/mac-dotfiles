@@ -1,0 +1,91 @@
+"" ============================================================================
+"" General Settings & Vim Behavior
+"" ============================================================================
+let mapleader = " "
+let g:mapleader = " "
+
+" Disable default space movement in normal mode
+nnoremap <Space> <Nop>
+
+set scrolloff=5                  " Keep 5 lines above/below cursor when scrolling
+set incsearch                    " Incremental search
+set hlsearch                     " Highlight search matches
+set number relativenumber        " Relative line numbers
+set clipboard+=unnamed           " Sync with system clipboard
+set ideajoin                     " Smart line joining
+set idearefactormode=keep        " Prevent IDE from exiting normal mode during refactoring
+
+" --- Plugin Emulations ---
+set surround         " ys, cs, ds - quickly add/change/delete surrounding quotes/brackets/tags
+set commentary       " gcc or gc{motion} - easily comment out lines and code blocks
+set highlightedyank  " Briefly flashes text yellow when you copy (yank) it
+set argtextobj       " cia / daa - select/delete function arguments easily
+" Enable Which-Key
+set which-key
+" Increase the key sequence timeout (e.g., 5000ms = 5 seconds)
+set timeoutlen=5000
+" Show the Which-Key popup faster after pressing Leader (0ms delay)
+let g:WhichKey_DefaultDelay = 0"" ============================================================================
+
+"" Window Management (LazyVim Style: <leader>w...)
+"" ============================================================================
+" Window navigation (Ctrl + h/j/k/l)
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+" Splitting windows
+nmap <leader>wv :action SplitVertically<CR>
+nmap <leader>ws :action SplitHorizontally<CR>
+nmap <leader>wd :action CloseContent<CR>
+
+"" ============================================================================
+"" File Explorer / Tree (LazyVim Style: <leader>e)
+"" ============================================================================
+nmap <leader>e :NERDTreeToggle<CR>
+nmap <leader>E :NERDTreeFind<CR>
+
+"" ============================================================================
+"" Finding / Telescope Style (<leader>f...)
+"" ============================================================================
+nmap <leader>ff :action GotoFile<CR>
+nmap <leader>fr :action RecentFiles<CR>
+nmap <leader>fg :action FindInPath<CR>
+nmap <leader>fs :action GotoSymbol<CR>
+nmap <leader>fc :action GotoClass<CR>
+
+"" ============================================================================
+"" Code / LSP Navigation & Actions (LazyVim Style: <leader>c / <leader>g)
+"" ============================================================================
+" Standard LSP jumps
+nmap gd :action GotoDeclaration<CR>
+nmap gi :action GotoImplementation<CR>
+nmap gy :action GotoTypeDeclaration<CR>
+nmap gr :action FindUsages<CR>
+
+" Code actions & Refactoring (<leader>c)
+nmap <leader>ca :action ShowIntentionActions<CR>
+nmap <leader>cr :action RenameElement<CR>
+nmap <leader>cf :action ReformatCode<CR>
+
+"" ============================================================================
+"" Diagnostics / Errors (LazyVim Style: [d / ]d)
+"" ============================================================================
+nmap [d :action GotoPreviousError<CR>
+nmap ]d :action GotoNextError<CR>
+
+"" ============================================================================
+"" Git integration (<leader>g...)
+"" ============================================================================
+nmap <leader>gg :action ActivateVersionControlToolWindow<CR>
+nmap <leader>gd :action Vcs.ShowDiff<CR>
+nmap <leader>gb :action Annotate<CR>
+nmap ]h :action VcsShowNextChangeMarker<CR>
+nmap [h :action VcsShowPrevChangeMarker<CR>
+
+"" ============================================================================
+"" Utilities
+"" ============================================================================
+nnoremap <ESC> :nohlsearch<CR>
+nmap <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
